@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sum of Arguments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background: #f0f4f8;
+            color: #333;
+        }
+
+        input,
+        button {
+            font-size: 1rem;
+            padding: 8px;
+            margin: 5px 0;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Sum of Arguments</h1>
+    <p>Enter numbers separated by commas:</p>
+    <input id="numbersInput" type="text" placeholder="e.g. 5, 10, 15" />
+    <br />
+    <button onclick="calculateSum()">Calculate Sum</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateSum() {
+            const input = document.getElementById('numbersInput').value;
+            if (!input.trim()) {
+                document.getElementById('result').textContent = "Please enter some numbers.";
+                return;
+            }
+            // Split by comma, trim spaces, convert to numbers
+            const numbers = input.split(',').map(n => Number(n.trim()));
+            if (numbers.some(isNaN)) {
+                document.getElementById('result').textContent = "Please enter valid numbers separated by commas.";
+                return;
+            }
+            const sum = numbers.reduce((total, num) => total + num, 0);
+            document.getElementById('result').textContent = `Sum: ${sum}`;
+        }
+    </script>
+</body>
+
+</html>
